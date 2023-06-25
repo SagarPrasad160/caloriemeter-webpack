@@ -15,9 +15,9 @@ class Storage {
   static getTotalCalories(calories = 0) {
     let totalCalories;
     if (localStorage.getItem("totalCalories")) {
-      totalCalories = localStorage.getItem("totalCalories");
+      totalCalories = +localStorage.getItem("totalCalories");
     } else {
-      totalCalories = calories;
+      totalCalories = +calories;
     }
     return totalCalories;
   }

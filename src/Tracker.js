@@ -4,6 +4,7 @@ class CaloriesTracker {
   constructor() {
     this._calorieLimit = Storage.getCalorieLimit();
     this._totalCalories = Storage.getTotalCalories(0);
+    console.log(this._totalCalories);
     this._meals = Storage.getMeals();
     this._workouts = Storage.getWorkouts();
 
@@ -15,7 +16,7 @@ class CaloriesTracker {
   addMeal(meal) {
     this._meals.push(meal);
     Storage.saveMeal(meal);
-    this._totalCalories += meal.calories;
+    this._totalCalories += Number(meal.calories);
     Storage.updateTotalCalories(this._totalCalories);
     this._renderDisplay();
 
@@ -26,7 +27,7 @@ class CaloriesTracker {
     const index = this._meals.findIndex((meal) => meal.id === id);
     if (index !== -1) {
       const meal = this._meals[index];
-      this._totalCalories -= meal.calories;
+      this._totalCalories -= Number(meal.calories);
       Storage.updateTotalCalories(this._totalCalories);
       this._meals.splice(index, 1);
       Storage.removeMeal(id);
@@ -37,7 +38,7 @@ class CaloriesTracker {
   addWorkout(workout) {
     this._workouts.push(workout);
     Storage.saveWorkout(workout);
-    this._totalCalories -= workout.calories;
+    this._totalCalories -= Number(workout.calories);
     Storage.updateTotalCalories(this._totalCalories);
     this._renderDisplay();
     this._displayNewWorkout(workout);

@@ -56,6 +56,7 @@ class App {
 
     if (type === "meal") {
       const meal = new Meal(name.value, Number(calories.value));
+      console.log(meal);
       this._tracker.addMeal(meal);
     } else {
       const workout = new Workout(name.value, Number(calories.value));
